@@ -1,6 +1,7 @@
 import prisma from '@/app/libs/prismadb';
 import { NextResponse } from "next/server";
 import { getCurrentUser } from '@/app/actions/getCurrentUser';
+import { getTodolist } from '@/app/actions/getTodolist';
 
 export const POST = async (request: Request) => {
   const user = await getCurrentUser();
@@ -14,7 +15,6 @@ export const POST = async (request: Request) => {
   const { id } = user;
   // add new todo
   const { title } = body;
-  console.log('title', title)
   const todo = await prisma.todo.create({
     data: {
       title,
@@ -26,4 +26,14 @@ export const POST = async (request: Request) => {
     },
   });
   return NextResponse.json(todo);
+}
+
+export const GET = async (request: Request) => {
+  const user = await getCurrentUser();
+  if (!user) {
+    return new NextResponse('Unauthorized', { status: 401 });
+  }
+  const { id } = user;
+  const todolist = await getTodolist(id);
+  return NextResponse.json(todolist);
 }

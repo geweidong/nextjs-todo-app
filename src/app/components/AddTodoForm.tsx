@@ -16,12 +16,16 @@ export default function AddTodoForm() {
     if (!value) {
       return toast.error('请输入内容');
     }
-    axios.post('/api/todo', {
+    toast.promise(axios.post('/api/todo', {
       title: value,
     }).then((todo) => {
       addTodolist(todo.data);
-    }).catch((err) => {
-      toast.error('出错了', err.message || '');
+    }).catch(console.error).finally(() => {
+      setValue('');
+    }), {
+      loading: 'Loading...',
+      success: 'Success!',
+      error: 'Error!',
     })
   }, [addTodolist, value]);
 
