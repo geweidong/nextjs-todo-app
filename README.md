@@ -1,11 +1,36 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+First, install all the dependencies:
+```bash
+npm install
+```
 
-First, run the development server:
+Then, create a `.env` file with the following contents:
+
+```
+# https://cloud.mongodb.com/v2/5b220dc5d383ad45a4104b3e#/clusters
+DATABASE_URL=""
+
+# https://next-auth.js.org/configuration/options#secret
+NEXTAUTH_SECRET=""
+
+GITHUB_ID=
+GITHUB_SECRET=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+Then, init the prisma client:
+```bash
+npx prisma db push
+```
+
+And run the app:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -14,14 +39,14 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Full stack
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Next.js](https://nextjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Prisma](https://www.prisma.io/)
+- [tailwindcss](https://tailwindcss.com/)
+- [next-auth](https://next-auth.js.org/)
+- [zustand](https://github.com/pmndrs/zustand)
 
 ## Deploy on Vercel
 
